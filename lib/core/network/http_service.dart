@@ -3,15 +3,15 @@ import 'package:quotes/core/network/custom_network_exception.dart';
 
 abstract class HttpService {
   Future<Map<String, dynamic>> post(
-      String endpointUrl, Map<String, dynamic> data);
+      String endpointUrl, {Map<String, dynamic>? data});
 
   Future<Map<String, dynamic>> get(
-      String endpointUrl, Map<String, dynamic> data);
+      String endpointUrl, {Map<String, dynamic>? data});
 }
 
 class HttpServiceImpl implements HttpService {
   late final Dio baseDio;
-  String baseUrl = '';
+  String baseUrl = 'https://animechan.vercel.app/api';
 
   HttpServiceImpl() {
     baseDio = Dio(
@@ -26,7 +26,7 @@ class HttpServiceImpl implements HttpService {
 
   @override
   Future<Map<String, dynamic>> get(
-      String endpointUrl, Map<String, dynamic> data) async {
+      String endpointUrl, {Map<String, dynamic>? data}) async {
     return decodeResponse(
       await baseDio.get(
         endpointUrl,
@@ -37,7 +37,7 @@ class HttpServiceImpl implements HttpService {
 
   @override
   Future<Map<String, dynamic>> post(
-      String endpointUrl, Map<String, dynamic> data) async {
+      String endpointUrl, {Map<String, dynamic>? data}) async {
     return decodeResponse(
       await baseDio.post(
         endpointUrl,

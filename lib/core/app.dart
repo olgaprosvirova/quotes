@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget with Dependencies {
     return MaterialApp(
       title: 'Boku No Anime Quotes $i',
       theme: appThemeData.defaultLightTheme,
-      home: const QuotesScreen(),
+      home: QuotesScreen(repository: quotesRepository),
     );
   }
 }
