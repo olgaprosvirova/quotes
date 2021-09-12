@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget with Dependencies {
 
   @override
   Widget build(BuildContext context) {
-    int i = 0;
+    var i = 0;
     return MaterialApp(
       title: 'Boku No Anime Quotes $i',
       theme: appThemeData.defaultLightTheme,

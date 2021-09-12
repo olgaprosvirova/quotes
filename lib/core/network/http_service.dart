@@ -7,13 +7,15 @@ abstract class HttpService {
 
   Future<Map<String, dynamic>> get(
       String endpointUrl, {Map<String, dynamic>? data});
+
+  static HttpService internal(String baseUrl) =>HttpServiceImpl(baseUrl);
 }
 
-class HttpServiceImpl implements HttpService {
+class HttpServiceImpl extends HttpService {
   late final Dio baseDio;
-  String baseUrl = 'https://animechan.vercel.app/api';
+  String baseUrl;
 
-  HttpServiceImpl() {
+  HttpServiceImpl(this.baseUrl) {
     baseDio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
@@ -54,6 +56,6 @@ class HttpServiceImpl implements HttpService {
     }
     throw CustomNetworkException(
         statusCode: response.statusCode,
-        message: response.data['message'] ?? response.statusMessage);
+        message: response.data?['message'] ?? response.statusMessage);
   }
 }

@@ -7,10 +7,13 @@ abstract class ApiQuotesService {
 }
 
 class ApiQuotesServiceImpl implements ApiQuotesService {
-  final HttpService httpService;
+  final String baseUrl = 'https://animechan.vercel.app/api';
+  late final HttpService httpService;
   final String randomQuoteEndpoint = '/random';
 
-  ApiQuotesServiceImpl(this.httpService);
+  ApiQuotesServiceImpl(){
+    httpService = HttpService.internal(baseUrl);
+  }
 
   @override
   Future<Map<String, dynamic>> getRandomQuote() async {
