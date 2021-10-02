@@ -6,8 +6,7 @@ import 'package:quotes/ui/screens/quote_screen/bl/picture/picture_bloc.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/picture/picture_state.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/quote/quote_bloc.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/quote/quote_state.dart';
-
-import 'bl/picture/picture_event.dart';
+import 'package:quotes/ui/screens/quote_screen/bl/picture/picture_event.dart';
 
 class QuoteLayout extends StatelessWidget {
   const QuoteLayout({Key? key}) : super(key: key);

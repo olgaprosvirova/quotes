@@ -29,6 +29,7 @@ class QuoteWidget extends StatelessWidget {
         children: [
           Text(
             '"$quote"',
+            style: Theme.of(context).textTheme.headline4,
           ),
           const SizedBox(height: 20,),
           Text(

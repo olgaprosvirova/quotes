@@ -3,8 +3,8 @@ import 'package:quotes/core/dependencies.dart';
 import 'package:quotes/ui/screens/quote_screen/quote_screen.dart';
 
 // ignore: must_be_immutable
-class MyApp extends StatelessWidget with Dependencies {
-  MyApp({Key? key}) : super(key: key);
+class QuotesApp extends StatelessWidget with Dependencies {
+  QuotesApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
