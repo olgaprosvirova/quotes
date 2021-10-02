@@ -19,8 +19,6 @@ class HttpServiceImpl extends HttpService {
     baseDio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
-        connectTimeout: 20000,
-        receiveTimeout: 20000,
         responseType: ResponseType.json,
       ),
     );
@@ -33,8 +31,8 @@ class HttpServiceImpl extends HttpService {
           handler.resolve(response);
         },
         onError: (DioError error, handler) async {
-          handler.reject(error);
-          throw CustomNetworkException(message: error.message);
+          handler.reject(
+              CustomNetworkException(error.requestOptions, error.response));
         },
       ),
     );
@@ -68,8 +66,6 @@ class HttpServiceImpl extends HttpService {
         return response.data;
       }
     }
-    throw CustomNetworkException(
-        statusCode: response.statusCode,
-        message: response.data?['message'] ?? response.statusMessage);
+    throw CustomNetworkException(response.requestOptions, response);
   }
 }

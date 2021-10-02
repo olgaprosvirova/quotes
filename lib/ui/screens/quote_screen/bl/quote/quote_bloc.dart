@@ -16,7 +16,7 @@ class QuoteBloc extends BaseBloc<QuoteEvent, QuoteState> {
       try {
         var quote = await repository.getRandomQuote();
         yield QuoteState(status: Status.loaded, quote: quote);
-      } on Exception {
+      } catch(e) {
         yield QuoteState(status: Status.error);
       }
     }

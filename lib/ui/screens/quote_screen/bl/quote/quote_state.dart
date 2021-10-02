@@ -13,5 +13,5 @@ class QuoteState extends BaseState {
   }
 
   @override
-  String toString() => '$status $quote';
+  String toString() => '$runtimeType $status $quote';
 }

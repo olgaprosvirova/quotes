@@ -1,7 +1,11 @@
-class CustomNetworkException implements Exception {
-  final String? message;
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-  final int? statusCode;
-
-  CustomNetworkException({this.statusCode, this.message});
+class CustomNetworkException extends DioError {
+  CustomNetworkException(RequestOptions requestOptions, Response? response)
+      : super(
+          requestOptions: requestOptions,
+        ) {
+    debugPrint('${response?.statusMessage} ${response?.statusCode} $message');
+  }
 }
