@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quotes/core/dependencies.dart';
-import 'package:quotes/ui/screens/quotes_screen/quotes_screen.dart';
+import 'package:quotes/ui/screens/quote_screen/quote_screen.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget with Dependencies {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget with Dependencies {
     return MaterialApp(
       title: 'Boku No Anime Quotes $i',
       theme: appThemeData.defaultLightTheme,
-      home: QuotesScreen(repository: quotesRepository),
+      home: QuoteScreen(repository: quotesRepository),
     );
   }
 }

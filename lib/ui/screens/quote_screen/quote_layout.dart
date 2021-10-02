@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:quotes/model/quote_model.dart';
-import 'package:quotes/repository/quotes_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quotes/ui/screens/quote_screen/bl/quote/quote_bloc.dart';
+import 'package:quotes/ui/screens/quote_screen/bl/quote/quote_state.dart';
 
-class QuotesLayout extends StatelessWidget {
-  final Future<QuoteModel> snapshot;
 
-  final QuotesRepository repository;
+class QuoteLayout extends StatelessWidget {
 
-  const QuotesLayout(this.snapshot, this.repository, {Key? key})
+  const QuoteLayout({Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuoteModel>(
-      future: snapshot,
-      builder: (context, snapshot) => snapshot.hasData
+    return BlocBuilder<QuoteBloc, QuoteState>(
+      builder: (context, state) => state.isLoaded
           ? Column(
               children: [
-                Text('Anime: ${snapshot.data?.anime}'),
-                Text('Character: ${snapshot.data?.character}'),
-                Text('Quote: ${snapshot.data?.quote}'),
-                FutureBuilder(
+                Text('Anime: ${state.quote?.anime}'),
+                Text('Character: ${state.quote?.character}'),
+                Text('Quote: ${state.quote?.quote}'),
+               /* FutureBuilder(
                   future:
                       repository.getCharacterImageUrl(snapshot.data!.character),
                   builder: (context, snapshot) {
@@ -31,7 +29,7 @@ class QuotesLayout extends StatelessWidget {
                           : Container()
                           : const Center(child: CircularProgressIndicator());
                   }
-                )
+                )*/
               ],
             )
           : const Center(child: CircularProgressIndicator()),
