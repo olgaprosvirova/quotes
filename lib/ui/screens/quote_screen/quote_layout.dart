@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quotes/ui/elements/loading_widget.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/picture/picture_bloc.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/picture/picture_state.dart';
 import 'package:quotes/ui/screens/quote_screen/bl/quote/quote_bloc.dart';
@@ -30,13 +31,13 @@ class QuoteLayout extends StatelessWidget {
                   return state.isLoaded
                       ? Image.network(state.url!)
                       : state.isLoading
-                          ? const Center(child: CircularProgressIndicator())
+                          ? const LoadingWidget()
                           : const Text('No image');
                 })
               ],
             )
           : state.isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const LoadingWidget()
               : Container(),
     );
   }
