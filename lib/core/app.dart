@@ -8,9 +8,8 @@ class QuotesApp extends StatelessWidget with Dependencies {
 
   @override
   Widget build(BuildContext context) {
-    var i = 0;
     return MaterialApp(
-      title: 'Boku No Anime Quotes $i',
+      title: 'Boku No Anime Quotes',
       theme: appThemeData.defaultLightTheme,
       home: QuoteScreen(repository: quotesRepository),
     );
