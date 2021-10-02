@@ -1,7 +1,7 @@
 import 'package:quotes/core/network/http_service.dart';
 
 abstract class ApiQuotesService {
-  ApiQuotesService(HttpService httpService);
+  ApiQuotesService();
 
   Future<Map<String, dynamic>> getRandomQuote();
 }
@@ -11,7 +11,7 @@ class ApiQuotesServiceImpl implements ApiQuotesService {
   late final HttpService httpService;
   final String randomQuoteEndpoint = '/random';
 
-  ApiQuotesServiceImpl(){
+  ApiQuotesServiceImpl() {
     httpService = HttpService.internal(baseUrl);
   }
 

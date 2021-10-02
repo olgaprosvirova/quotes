@@ -2,13 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:quotes/core/network/custom_network_exception.dart';
 
 abstract class HttpService {
-  Future<Map<String, dynamic>> post(
-      String endpointUrl, {Map<String, dynamic>? data});
+  Future<Map<String, dynamic>> post(String endpointUrl,
+      {Map<String, dynamic>? data});
 
-  Future<Map<String, dynamic>> get(
-      String endpointUrl, {Map<String, dynamic>? data});
+  Future<Map<String, dynamic>> get(String endpointUrl,
+      {Map<String, dynamic>? data});
 
-  static HttpService internal(String baseUrl) =>HttpServiceImpl(baseUrl);
+  static HttpService internal(String baseUrl) => HttpServiceImpl(baseUrl);
 }
 
 class HttpServiceImpl extends HttpService {
@@ -24,11 +24,25 @@ class HttpServiceImpl extends HttpService {
         responseType: ResponseType.json,
       ),
     );
+    baseDio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          handler.next(options);
+        },
+        onResponse: (response, handler) {
+          handler.resolve(response);
+        },
+        onError: (DioError error, handler) async {
+          handler.reject(error);
+          throw CustomNetworkException(message: error.message);
+        },
+      ),
+    );
   }
 
   @override
-  Future<Map<String, dynamic>> get(
-      String endpointUrl, {Map<String, dynamic>? data}) async {
+  Future<Map<String, dynamic>> get(String endpointUrl,
+      {Map<String, dynamic>? data}) async {
     return decodeResponse(
       await baseDio.get(
         endpointUrl,
@@ -38,8 +52,8 @@ class HttpServiceImpl extends HttpService {
   }
 
   @override
-  Future<Map<String, dynamic>> post(
-      String endpointUrl, {Map<String, dynamic>? data}) async {
+  Future<Map<String, dynamic>> post(String endpointUrl,
+      {Map<String, dynamic>? data}) async {
     return decodeResponse(
       await baseDio.post(
         endpointUrl,

@@ -13,6 +13,7 @@ We'll see how things turn out.
 ## Features
 
 Get a random quote.
+If you are lucky, you get a picture of a character too.
 
 
 
